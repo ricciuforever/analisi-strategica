@@ -277,11 +277,11 @@ function as_marketing_trigger_python_script() {
  */
 function as_marketing_dashboard_page() {
     // Leggi il contenuto del file di analisi strategica
-    $strategic_analysis_content = 'Nessuna analisi strategica disponibile. Esegui l\'aggiornamento dati.';
+    $strategic_analysis_content = 'Nessuna analisi strategica disponibile. Esegui l'aggiornamento dati.';
     if ( file_exists( AS_MARKETING_STRATEGIC_ANALYSIS_FILE ) ) {
         $strategic_analysis_content = file_get_contents( AS_MARKETING_STRATEGIC_ANALYSIS_FILE );
         if ( empty( $strategic_analysis_content ) ) {
-            $strategic_analysis_content = 'Il file di analisi strategica è vuoto. Prova a eseguire nuovamente l\'aggiornamento dati.';
+            $strategic_analysis_content = 'Il file di analisi strategica è vuoto. Prova a eseguire nuovamente l'aggiornamento dati.';
         }
     }
     
@@ -291,7 +291,7 @@ function as_marketing_dashboard_page() {
 
         <?php settings_errors( 'as_marketing_messages' ); // Mostra i messaggi di successo/errore ?>
 
-        <div class="dashboard-info-box">
+        <div class="dashboard-section dashboard-info-box">
             <p><strong>Gestione Dati:</strong> Carica il tuo file Excel `<?php echo AS_MARKETING_EXCEL_FILE_NAME; ?>` più recente qui sotto. Una volta caricato, lo script di analisi Python verrà automaticamente avviato per aggiornare i grafici e generare la nuova analisi strategica.</p>
 
             <form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
@@ -329,62 +329,63 @@ function as_marketing_dashboard_page() {
             </div>
         </div>
 
-        <div class="dashboard-section">
-            <h2>Panoramica Franchising</h2>
+        <div class="dashboard-grid">
+            <div class="dashboard-section">
+                <h2>Panoramica Franchising</h2>
 
-            <div class="chart-block">
-                <h3>1. Distribuzione Stato Lead - Franchising</h3>
-                <p class="chart-analysis">Questo grafico a torta mostra la percentuale di lead per il franchising che hanno raggiunto lo stato di 'Chiuso' (ovvero, un preventivo è stato emesso) rispetto a quelli che sono ancora nello stato 'Non Chiuso' (informazioni iniziali, non risponde, ecc.). Un tasso di conversione elevato indica un processo di vendita efficace dal contatto iniziale fino alla proposta commerciale. Monitorare questa metrica è fondamentale per valutare l'efficienza del tuo funnel di acquisizione lead.</p>
-                <div class="chart-container" id="chart-franchising-lead-status"></div>
+                <div class="chart-block">
+                    <h3>1. Distribuzione Stato Lead - Franchising</h3>
+                    <p class="chart-analysis">Questo grafico a torta mostra la percentuale di lead per il franchising che hanno raggiunto lo stato di 'Chiuso' (ovvero, un preventivo è stato emesso) rispetto a quelli che sono ancora nello stato 'Non Chiuso' (informazioni iniziali, non risponde, ecc.). Un tasso di conversione elevato indica un processo di vendita efficace dal contatto iniziale fino alla proposta commerciale. Monitorare questa metrica è fondamentale per valutare l'efficienza del tuo funnel di acquisizione lead.</p>
+                    <div class="chart-container" id="chart-franchising-lead-status"></div>
+                </div>
+
+                <div class="chart-block">
+                    <h3>2. Lead per Sorgente - Franchising</h3>
+                    <p class="chart-analysis">Questo grafico a barre evidenzia le sorgenti principali da cui provengono i tuoi lead di franchising (es. 'Sito', 'LF', 'Diretto'). Identificare i canali più performanti ti permette di ottimizzare l'allocazione del budget marketing, investendo maggiormente nelle fonti che generano lead di qualità superiore e con maggiore probabilità di conversione. È utile anche per capire quali canali potrebbero necessitare di miglioramenti.</p>
+                    <div class="chart-container" id="chart-franchising-leads-source"></div>
+                </div>
+
+                <div class="chart-block">
+                    <h3>3. Volume Lead Mensile - Franchising</h3>
+                    <p class="chart-analysis">Il grafico a linee 'Volume Lead Mensile' traccia l'andamento del numero di nuovi lead di franchising acquisiti ogni mese. Questa visualizzazione è cruciale per identificare tendenze stagionali, l'impatto di campagne marketing specifiche o eventi esterni. Un aumento costante indica una crescita sana nella generazione di opportunità, mentre cali improvvisi possono segnalare problemi nel funnel di acquisizione o inefficacia delle attività promozionali.</p>
+                    <div class="chart-container" id="chart-franchising-monthly-leads"></div>
+                </div>
+
+                <div class="chart-block">
+                    <h3>4. Top 10 Città per Volume Lead - Franchising</h3>
+                    <p class="chart-analysis">Questo grafico mostra le dieci città che generano il maggior numero di lead per il franchising. Comprendere la distribuzione geografica dei tuoi lead ti permette di affinare le strategie di marketing localizzate, identificare mercati promettenti per l'espansione e personalizzare la comunicazione in base alle specificità territoriali. Concentrati sulle città con alto volume e potenziale di conversione.</p>
+                    <div class="chart-container" id="chart-franchising-top-cities"></div>
+                </div>
             </div>
 
-            <div class="chart-block">
-                <h3>2. Lead per Sorgente - Franchising</h3>
-                <p class="chart-analysis">Questo grafico a barre evidenzia le sorgenti principali da cui provengono i tuoi lead di franchising (es. 'Sito', 'LF', 'Diretto'). Identificare i canali più performanti ti permette di ottimizzare l'allocazione del budget marketing, investendo maggiormente nelle fonti che generano lead di qualità superiore e con maggiore probabilità di conversione. È utile anche per capire quali canali potrebbero necessitare di miglioramenti.</p>
-                <div class="chart-container" id="chart-franchising-leads-source"></div>
-            </div>
+            <div class="dashboard-section">
+                <h2>Panoramica Prodotti</h2>
 
-            <div class="chart-block">
-                <h3>3. Volume Lead Mensile - Franchising</h3>
-                <p class="chart-analysis">Il grafico a linee 'Volume Lead Mensile' traccia l'andamento del numero di nuovi lead di franchising acquisiti ogni mese. Questa visualizzazione è cruciale per identificare tendenze stagionali, l'impatto di campagne marketing specifiche o eventi esterni. Un aumento costante indica una crescita sana nella generazione di opportunità, mentre cali improvvisi possono segnalare problemi nel funnel di acquisizione o inefficacia delle attività promozionali.</p>
-                <div class="chart-container" id="chart-franchising-monthly-leads"></div>
-            </div>
+                <div class="chart-block">
+                    <h3>1. Distribuzione Stato Lead - Prodotti</h3>
+                    <p class="chart-analysis">Simile al franchising, questo grafico a torta per i prodotti indica la percentuale di lead che sono stati 'Chiusi' (ovvero, è stato effettuato un ordine o si è conclusa positivamente) rispetto a quelli 'Non Chiusi'. Questo ti dà una visione immediata della performance del tuo processo di vendita per i prodotti specifici, evidenziando quanto efficacemente i lead si trasformano in clienti paganti. Un basso tasso di chiusura potrebbe indicare problemi nella proposta di valore o nel follow-up.</p>
+                    <div class="chart-container" id="chart-prodotti-lead-status"></div>
+                </div>
 
-            <div class="chart-block">
-                <h3>4. Top 10 Città per Volume Lead - Franchising</h3>
-                <p class="chart-analysis">Questo grafico mostra le dieci città che generano il maggior numero di lead per il franchising. Comprendere la distribuzione geografica dei tuoi lead ti permette di affinare le strategie di marketing localizzate, identificare mercati promettenti per l'espansione e personalizzare la comunicazione in base alle specificità territoriali. Concentrati sulle città con alto volume e potenziale di conversione.</p>
-                <div class="chart-container" id="chart-franchising-top-cities"></div>
-            </div>
-        </div>
+                <div class="chart-block">
+                    <h3>2. Lead per Sorgente - Prodotti</h3>
+                    <p class="chart-analysis">Questo grafico a barre illustra le diverse sorgenti di acquisizione lead per i prodotti. Analizzare quali canali (es. 'Sito', 'Diretto') portano più lead è fondamentale per ottimizzare gli investimenti. Un canale che porta molti lead ma con basso tasso di chiusura potrebbe richiedere una revisione della qualità dei lead generati, mentre canali con meno volume ma alta conversione meritano più attenzione.</p>
+                    <div class="chart-container" id="chart-prodotti-leads-source"></div>
+                </div>
 
-        <div class="dashboard-section">
-            <h2>Panoramica Prodotti</h2>
+                <div class="chart-block">
+                    <h3>3. Volume Lead Mensile - Prodotti</h3>
+                    <p class="chart-analysis">Questo grafico a linee mostra il numero di lead di prodotto acquisiti ogni mese. L'analisi di questo trend ti aiuta a capire la risposta del mercato alle tue offerte di prodotti, l'efficacia delle promozioni e l'impatto di eventi esterni. È un indicatore chiave della domanda e della salute delle tue attività di lead generation per i prodotti.</p>
+                    <div class="chart-container" id="chart-prodotti-monthly-leads"></div>
+                </div>
 
-            <div class="chart-block">
-                <h3>1. Distribuzione Stato Lead - Prodotti</h3>
-                <p class="chart-analysis">Simile al franchising, questo grafico a torta per i prodotti indica la percentuale di lead che sono stati 'Chiusi' (ovvero, è stato effettuato un ordine o si è conclusa positivamente) rispetto a quelli 'Non Chiusi'. Questo ti dà una visione immediata della performance del tuo processo di vendita per i prodotti specifici, evidenziando quanto efficacemente i lead si trasformano in clienti paganti. Un basso tasso di chiusura potrebbe indicare problemi nella proposta di valore o nel follow-up.</p>
-                <div class="chart-container" id="chart-prodotti-lead-status"></div>
-            </div>
-
-            <div class="chart-block">
-                <h3>2. Lead per Sorgente - Prodotti</h3>
-                <p class="chart-analysis">Questo grafico a barre illustra le diverse sorgenti di acquisizione lead per i prodotti. Analizzare quali canali (es. 'Sito', 'Diretto') portano più lead è fondamentale per ottimizzare gli investimenti. Un canale che porta molti lead ma con basso tasso di chiusura potrebbe richiedere una revisione della qualità dei lead generati, mentre canali con meno volume ma alta conversione meritano più attenzione.</p>
-                <div class="chart-container" id="chart-prodotti-leads-source"></div>
-            </div>
-
-            <div class="chart-block">
-                <h3>3. Volume Lead Mensile - Prodotti</h3>
-                <p class="chart-analysis">Questo grafico a linee mostra il numero di lead di prodotto acquisiti ogni mese. L'analisi di questo trend ti aiuta a capire la risposta del mercato alle tue offerte di prodotti, l'efficacia delle promozioni e l'impatto di eventi esterni. È un indicatore chiave della domanda e della salute delle tue attività di lead generation per i prodotti.</p>
-                <div class="chart-container" id="chart-prodotti-monthly-leads"></div>
-            </div>
-
-            <div class="chart-block">
-                <h3>4. Top 10 Città per Volume Lead - Prodotti</h3>
-                <p class="chart-analysis">Questo grafico a barre identifica le dieci città da cui provengono la maggior parte dei lead di prodotto. Questa informazione è preziosa per strategie di marketing geo-mirate, campagne pubblicitarie locali o per l'identificazione di aree ad alto potenziale di crescita per la vendita dei prodotti. Potrebbe anche suggerire l'opportunità di eventi o partnership locali.</p>
-                <div class="chart-container" id="chart-prodotti-top-cities"></div>
+                <div class="chart-block">
+                    <h3>4. Top 10 Città per Volume Lead - Prodotti</h3>
+                    <p class="chart-analysis">Questo grafico a barre identifica le dieci città da cui provengono la maggior parte dei lead di prodotto. Questa informazione è preziosa per strategie di marketing geo-mirate, campagne pubblicitarie locali o per l'identificazione di aree ad alto potenziale di crescita per la vendita dei prodotti. Potrebbe anche suggerire l'opportunità di eventi o partnership locali.</p>
+                    <div class="chart-container" id="chart-prodotti-top-cities"></div>
+                </div>
             </div>
         </div>
     </div>
     <?php
-
 }
