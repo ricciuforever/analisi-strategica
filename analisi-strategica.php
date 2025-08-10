@@ -62,6 +62,15 @@ function as_marketing_enqueue_admin_scripts($hook) {
         true // Carica nel footer
     );
 
+    // Passa i dati da PHP a JavaScript in modo sicuro
+    wp_localize_script(
+        'as-marketing-dashboard-js',
+        'asMarketing', // Nome dell'oggetto JavaScript che conterrà i dati
+        array(
+            'plugin_url' => plugins_url( '/', __FILE__ ) // Passa l'URL base del plugin
+        )
+    );
+
     // Accoda il tuo foglio di stile
     wp_enqueue_style(
         'as-marketing-dashboard-css',
@@ -377,4 +386,5 @@ function as_marketing_dashboard_page() {
         </div>
     </div>
     <?php
+
 }
