@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if the asMarketing object and its plugin_url property are available
+    if (typeof asMarketing === 'undefined' || typeof asMarketing.plugin_url === 'undefined') {
+        console.error('asMarketing localization object not found. Make sure it is passed correctly from PHP.');
+        return;
+    }
+
     const charts = [
         { id: 'chart-franchising-lead-status', url: 'data/franchising_lead_status_distribution.json' },
         { id: 'chart-franchising-leads-source', url: 'data/franchising_leads_by_source.json' },
@@ -13,9 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     charts.forEach(chart => {
         const container = document.getElementById(chart.id);
         if (container) {
-            // Ottieni il percorso base del plugin per caricare i dati
-            const pluginUrl = window.location.origin + '/wp-content/plugins/analisi-strategica/';
-            const dataUrl = pluginUrl + chart.url;
+            // Use the localized plugin URL to construct the data URL
+            const dataUrl = asMarketing.plugin_url + chart.url;
 
             fetch(dataUrl)
                 .then(response => {
@@ -25,11 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.json();
                 })
                 .then(spec => {
+                    // Embed the chart using Vega-Embed
                     vegaEmbed(container, spec, { actions: false }).catch(console.error);
                 })
                 .catch(error => {
-                    console.error('Errore nel caricamento o rendering del grafico:', chart.id, error);
-                    container.innerHTML = `<p>Impossibile caricare il grafico: ${chart.id}. Controlla la console per dettagli.</p>`;
+                    console.error('Error loading or rendering chart:', chart.id, error);
+                    container.innerHTML = `<p style="color: red; text-align: center;">Could not load chart: ${chart.id}. See console for details.</p>`;
                 });
         }
     });
