@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/var/www/vhosts/esvending.it/httpdocs/wp-content/plugins/analisi-strategica/generate_charts.py", line 4, in <module>
+    import google.generativeai as genai # Assicurati di aver installato: pip install google-generativeai
+  File "/usr/local/lib/python3.8/dist-packages/google/generativeai/__init__.py", line 59, in <module>
+    from google.generativeai import types
+  File "/usr/local/lib/python3.8/dist-packages/google/generativeai/types/__init__.py", line 19, in <module>
+    from google.generativeai.types.text_types import *
+  File "/usr/local/lib/python3.8/dist-packages/google/generativeai/types/text_types.py", line 34, in <module>
+    class Completion(abc.ABC):
+  File "/usr/local/lib/python3.8/dist-packages/google/generativeai/types/text_types.py", line 49, in Completion
+    filters: Optional[list[safety_types.ContentFilterDict]]
+TypeError: 'type' object is not subscriptable
