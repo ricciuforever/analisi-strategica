@@ -11,9 +11,14 @@ genai.configure(api_key=GEMINI_API_KEY)
 # --- Fine Configurazione LLM ---
 
 
-# Definisci i percorsi assoluti per le cartelle del plugin (usando le costanti di PHP per coerenza)
-CSV_FOLDER = '/var/www/vhosts/esvending.it/httpdocs/wp-content/plugins/analisi-strategica/csv/'
-DATA_FOLDER = '/var/www/vhosts/esvending.it/httpdocs/wp-content/plugins/analisi-strategica/data/'
+# --- Configurazione dei Percorsi Dinamici ---
+# Determina la directory in cui si trova lo script per rendere i percorsi relativi e portabili.
+# __file__ è il percorso dello script stesso. os.path.dirname() ottiene la directory.
+PLUGIN_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Definisci i percorsi per le cartelle CSV e DATA in modo relativo alla posizione dello script.
+CSV_FOLDER = os.path.join(PLUGIN_DIR, 'csv')
+DATA_FOLDER = os.path.join(PLUGIN_DIR, 'data')
 
 # Nome del file Excel unico
 EXCEL_FILE_NAME = 'Commerciale.xlsx'

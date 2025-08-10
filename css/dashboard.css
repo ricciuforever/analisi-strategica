@@ -1,145 +1,150 @@
+/* Global Dashboard Styles */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #50e3c2;
+    --background-color: #f4f7f9;
+    --card-background-color: #ffffff;
+    --text-color: #333333;
+    --muted-text-color: #777777;
+    --border-color: #e0e5e9;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+body.admin-color-fresh .as-marketing-dashboard {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
 .as-marketing-dashboard {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--background-color);
 }
 
 .as-marketing-dashboard h1 {
     text-align: center;
-    color: #333;
+    color: #23282d;
     margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: 600;
 }
 
-.dashboard-info-box {
-    background-color: #e6f7ff; /* Light blue background for info box */
-    border: 1px solid #91d5ff;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 25px;
-    color: #333;
+/* Grid Layout for Charts */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 25px;
 }
 
-.dashboard-info-box p {
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
-
-.dashboard-info-box code {
-    background-color: #fff;
-    padding: 2px 4px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    font-family: monospace;
-}
-
-.dashboard-info-box form {
-    margin-top: 15px;
-    padding: 10px 0;
-    border-top: 1px dashed #c0e0ff; /* Separatore per i form */
-}
-
-.dashboard-info-box form:first-of-type {
-    border-top: none; /* Rimuove il bordo per il primo form */
-}
-
-.dashboard-info-box .button-primary,
-.dashboard-info-box .button-secondary {
-    margin-top: 5px;
-    margin-right: 10px;
-}
-
-.dashboard-info-box .warning-text {
-    color: #a00; /* Red for warnings */
-    margin-top: 15px;
-}
-
-/* Nuove regole per la sezione di analisi strategica */
-.strategic-analysis-content {
-    background-color: #fff;
-    border: 1px solid #dcdcdc;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 15px;
-    line-height: 1.8;
-    color: #333;
-    white-space: pre-wrap; /* Mantiene la formattazione del testo preformattato (es. a capo) */
-}
-
-.strategic-analysis-content h3 {
-    color: #444;
-    margin-top: 0;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #eee;
-    padding-bottom: 5px;
-}
-
-.strategic-analysis-content p {
-    margin-bottom: 1em;
-}
-
-
+/* Card Styles */
 .dashboard-section {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
+    background-color: var(--card-background-color);
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    margin-bottom: 25px;
 }
 
 .dashboard-section h2 {
-    color: #555;
+    color: #333;
     margin-top: 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 600;
 }
 
+/* Info Box Styles */
+.dashboard-info-box {
+    background-color: #fff;
+    border-left: 5px solid var(--primary-color);
+}
+
+.dashboard-info-box form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Strategic Analysis Section */
+.strategic-analysis-content {
+    background-color: #fdfdfd;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+    line-height: 1.7;
+    color: var(--text-color);
+    white-space: pre-wrap;
+}
+
+/* Chart Block Styles */
 .chart-block {
-    margin-bottom: 40px; /* Spazio maggiore tra i blocchi grafico/analisi */
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #eee; /* Separatore visivo */
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .chart-block:last-child {
-    border-bottom: none; /* Rimuove il bordo per l'ultimo blocco */
+    border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
 .chart-block h3 {
-    color: #444;
-    margin-top: 0;
-    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 1.15em;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
 .chart-analysis {
     font-size: 0.95em;
     line-height: 1.6;
-    color: #666;
+    color: var(--muted-text-color);
     margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-left: 4px solid #0073aa; /* Colore distintivo per l'analisi */
-    border-radius: 3px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid var(--secondary-color);
 }
 
 .chart-container {
-    margin-bottom: 30px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color);
     padding: 15px;
-    border-radius: 5px;
-    background-color: #fcfcfc;
-    min-height: 350px; /* Assicurati che i contenitori abbiano un'altezza minima */
+    border-radius: 8px;
+    background-color: #fff;
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
 }
 
-/* Stili per rendere i grafici responsivi */
-.chart-container canvas {
-    max-width: 100% !important;
-    height: auto !important;
+.chart-container:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .as-marketing-dashboard {
+        padding: 10px;
+    }
+    .dashboard-section {
+        padding: 15px;
+    }
+    .as-marketing-dashboard h1 {
+        font-size: 1.8em;
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 }
